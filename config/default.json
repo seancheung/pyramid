@@ -1,0 +1,7 @@
+{
+  "app": {
+    "tag": "pyramid",
+    "host": "localhost",
+    "port": 8000
+  }
+}
