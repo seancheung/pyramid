@@ -1,10 +1,7 @@
 const app = require('./app');
-const config = require('config');
-const debug = require('debug')(`${config.app.tag}:server`);
+const debug = require('debug')('pyramid:server');
 const http = require('http');
-
-app.set('port', config.app.port);
-app.set('host', config.app.host);
+const config = app.get('config');
 
 /**
  * create HTTP server
@@ -14,7 +11,7 @@ const server = http.createServer(app);
 /**
  * listen on provided port, on all network interfaces.
  */
-server.listen(config.app.port, config.app.host);
+server.listen(config.port, config.host);
 server.on('error', onError);
 server.on('listening', onListening);
 
@@ -27,9 +24,9 @@ function onError(error) {
     }
 
     const bind =
-        typeof config.app.port === 'string'
-            ? 'Pipe ' + config.app.port
-            : 'Port ' + config.app.port;
+        typeof config.port === 'string'
+            ? 'Pipe ' + config.port
+            : 'Port ' + config.port;
 
     // handle specific listen errors with friendly messages
     switch (error.code) {

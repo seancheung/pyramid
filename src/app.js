@@ -1,11 +1,27 @@
 const express = require('express');
 const morgan = require('morgan');
-const config = require('config');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const debug = require('debug')(`${config.app.tag}:app`);
+const debug = require('debug')('pyramid:app');
+const path = require('path');
+const config = require('./config');
+const init = path.join(__dirname, `../${config.init}`);
+const fs = require('fs');
 
 const app = express();
+
+/**
+ * Config
+ */
+app.set('config', config);
+
+/**
+ * init
+ */
+if (fs.existsSync(init)) {
+    const db = require('./db/boot')(require(init));
+    app.set('db', db);
+}
 
 /**
  * set request logger
@@ -22,6 +38,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
  * cookie parser
  */
 app.use(cookieParser());
+
+/**
+ * static files
+ */
+app.use('/', express.static(path.join(__dirname, '../public')));
+
+/**
+ * router
+ */
+app.use(require('./routes'));
+
+/**
+ * Renderer
+ */
+require('./renderer')(app);
 
 /**
  * catch 404 and forward to error handler
@@ -58,7 +89,7 @@ app.use((err, req, res) => {
     }
 
     // bypass 4xx errors
-    if (!err.status || !/^4/.test(err.status)) debug(err);
+    if (!err.status || !/^4[0-9]{2}/.test(err.status)) debug(err);
 });
 
 module.exports = app;

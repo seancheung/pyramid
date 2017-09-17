@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <title>install pyramid</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <style>
+        .top.container {
+            margin-top: 30px;
+            max-width: 720px !important;
+        }
+
+        .top.container>.ui.segment {
+            max-width: 480px !important;
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        $('#select')
+            .dropdown();
+    </script>
+    <div class="ui center aligned top container">
+        <div class="ui dividing header">
+            Installation
+        </div>
+        <div class="ui raised container segment">
+            <form action="/install" method="post" class="ui form">
+                <div class="field">
+                    <label for="dialect">Dialect</label>
+                    <select name="dialect" class="ui dropdown" id="select">
+                        <option value="">Dialect</option>
+                        <option value="mysql">MySql</option>
+                        <option value="sqlite">Sqlite</option>
+                        <option value="postgresql">PostgreSql</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="database">Database</label>
+                    <input type="text" name="database" placeholder="database name">
+                </div>
+                <div class="field">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" placeholder="username">
+                </div>
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" placeholder="password">
+                </div>
+                <div class="field">
+                    <label for="host">Host</label>
+                    <input type="text" name="host" placeholder="localhost">
+                </div>
+                <div class="field">
+                    <label for="port">Port</label>
+                    <input type="text" name="port" placeholder="3306">
+                </div>
+                <button class="ui button" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+{
+  "default": {
+    "host": "localhost",
+    "port": 80,
+    "init": ".pyramid.json"
+  },
+  "development": {
+    "port": 8000,
+    "init": ".pyramid.dev.json"
+  },
+  "production": {}
+}
