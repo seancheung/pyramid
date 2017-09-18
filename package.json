@@ -22,6 +22,8 @@
   "devDependencies": {
     "chalk": "^2.1.0",
     "commander": "^2.11.0",
+    "esdoc": "^1.0.2",
+    "esdoc-standard-plugin": "^1.0.0",
     "eslint": "^4.6.1",
     "mysql2": "^1.4.2",
     "nodemon": "^1.12.0",
@@ -31,7 +33,8 @@
     "supports-color": "^4.4.0"
   },
   "scripts": {
-    "dev": "cross-env NODE_ENV=development DEBUG=pyramid\\:* nodemon --watch src -e js,njk ./src/server.js"
+    "dev": "cross-env NODE_ENV=development DEBUG=pyramid\\:* nodemon --watch src -e js,njk ./src/server.js",
+    "doc": "esdoc"
   },
   "repository": {
     "type": "git",
